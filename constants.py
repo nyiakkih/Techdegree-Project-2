@@ -112,3 +112,6 @@ PLAYERS = [{
         'height': '41 inches'
     }
 ]
+
+if __name__ == "__main__":
+    
