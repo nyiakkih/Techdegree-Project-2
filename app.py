@@ -46,30 +46,36 @@ def balance_teams(players):
     return team_players
 
 def display_menu():
-    print("\nMENU:")
-    print("1. Display team stats")
-    print("2. Quit")
-    return input("Enter your choice (1 or 2): ")
+    print("\nBASKETBALL TEAM STATS TOOL\n")
+    print("\n--- MENU: ---\n")
+    print("Here are your choices:")
+    print(" 1) Display Team Stats")
+    print(" 2) Quit\n")
+    return input("Enter an option (1 or 2): ")
 
 def display_team_stats(teams):
-    team_name = input("Enter the team name (Panthers, Bandits, or Warriors): ").capitalize()
+    team_name = input("\nEnter the team name (Panthers, Bandits, or Warriors): ").capitalize()
     if team_name in teams:
-        print(f"\n{team_name} Stats:")
+        print(f"\n{team_name} Stats:\n")
         players = teams[team_name]
         total_players = len(players)
         experienced_players = [player for player in players if player["experience"]]
         inexperienced_players = [player for player in players if not player["experience"]]
         num_experienced = len(experienced_players)
         num_inexperienced = len(inexperienced_players)
-        average_height = sum(player["height"] for player in players) / total_players
-        guardians = ', '.join(set(guardian for player in players for guardian in (player["first_guardian"], player["second_guardian"]) if guardian))
         
         print(f"Total players: {total_players}")
-        print("Player names:", ', '.join(player["name"] for player in players))
         print(f"Number of experienced players: {num_experienced}")
         print(f"Number of inexperienced players: {num_inexperienced}")
+        
+        total_height = sum(player["height"] for player in players)
+        average_height = total_height / total_players if total_players != 0 else 0
         print(f"Average height: {average_height:.2f} inches")
-        print("Guardians:", guardians)
+        
+        sorted_players = sorted(players, key=lambda x: x["height"], reverse=True)
+        print("\nPlayers organized by height (tallest to shortest):")
+        for player in sorted_players:
+            print(f"- {player['name']}: {player['height']} inches")
     else:
         print("Invalid team name.")
 
