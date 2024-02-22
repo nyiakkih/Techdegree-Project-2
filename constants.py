@@ -112,7 +112,4 @@ PLAYERS = [{
         'height': '41 inches'
     }
 ]
-
-if __name__ == "__main__":
-    print(TEAMS)
     
