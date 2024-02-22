@@ -46,16 +46,23 @@ def balance_teams(players):
     return team_players
 
 def display_menu():
-    print("\nBASKETBALL TEAM STATS TOOL\n")
+    print("\nBASKETBALL TEAM STATS TOOL")
     print("\n--- MENU: ---\n")
     print("Here are your choices:")
-    print(" 1) Display Team Stats")
-    print(" 2) Quit\n")
-    return input("Enter an option (1 or 2): ")
+    print(" A) Display Team Stats")
+    print(" B) Quit\n")
+    return input("Enter an option (A or B): ").upper()
 
 def display_team_stats(teams):
-    team_name = input("\nEnter the team name (Panthers, Bandits, or Warriors): ").capitalize()
-    if team_name in teams:
+    print("\nSelect a team:\n")
+    print("A) Panthers")
+    print("B) Bandits")
+    print("C) Warriors")
+    
+    team_choice = input("\nEnter an option (A, B, or C): ").upper()
+    
+    if team_choice in ['A', 'B', 'C']:
+        team_name = TEAMS[ord(team_choice) - ord('A')]
         print(f"\n{team_name} Stats:\n")
         players = teams[team_name]
         total_players = len(players)
@@ -85,13 +92,13 @@ def main():
     while True:
         choice = display_menu()
         
-        if choice == "1":
+        if choice == "A":
             display_team_stats(balanced_teams)
-        elif choice == "2":
+        elif choice == "B":
             print("Thank you for using the basketball tool. Goodbye!")
             break
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter A or B.")
 
 if __name__ == "__main__":
     main()
