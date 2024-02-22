@@ -20,19 +20,15 @@ def clean_data(PLAYERS):
 
     return cleaned
 
-def balance_teams(teams, players):
-    num_teams = len(teams)
-    num_players_per_team = len(players) // num_teams
+def balance_teams(players):
+    cleaned_players = clean_data(players)
     
-    drafted_players = {team: [] for team in teams}
+    team_players = {team: [] for team in TEAMS}
     
-    for player_index, player in enumerate(players):
-        team_index = player_index % num_teams
-        assigned_team = teams[team_index]
-        
-        drafted_players[assigned_team].append(player)
+    num_players_per_team = len(cleaned_players) // len(TEAMS)
     
-    return drafted_players
-
-
-
+    for team in TEAMS:
+        team_players[team] = cleaned_players[:num_players_per_team]
+        cleaned_players = cleaned_players[num_players_per_team:]
+    
+    return team_players
