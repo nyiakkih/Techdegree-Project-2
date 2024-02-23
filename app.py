@@ -10,7 +10,6 @@ def clean_data(PLAYERS):
     for player in PLAYERS:
         fixed = {}
         fixed["name"] = player["name"]
-        guardians = player["guardians"].split(" and ")
         fixed["guardians"] = player["guardians"].split(" and ")
         if player["experience"] == "YES":
             fixed["experience"] = True
