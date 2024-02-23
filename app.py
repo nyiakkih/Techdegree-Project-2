@@ -11,8 +11,7 @@ def clean_data(PLAYERS):
         fixed = {}
         fixed["name"] = player["name"]
         guardians = player["guardians"].split(" and ")
-        fixed["first_guardian"] = guardians[0]
-        fixed["second_guardian"] = guardians[1] if len(guardians) > 1 else ""
+        fixed["guardians"] = player["guardians"].split(" and ")
         if player["experience"] == "YES":
             fixed["experience"] = True
         else:
@@ -91,6 +90,10 @@ def display_team_stats(teams):
         print("\nPlayers organized by height (tallest to shortest):")
         for player in sorted_players:
             print(f"- {player['name']}: {player['height']} inches")
+
+        all_guardians = ', '.join([guardian for player in players for guardian in player['guardians']])
+        print(f"\nGuardians: {all_guardians}")
+
     else:
         print("Invalid team name.")
 
