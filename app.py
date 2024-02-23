@@ -63,8 +63,14 @@ def display_team_stats(teams):
     
     team_choice = input("\nEnter an option (A, B, or C): ").upper()
     
-    if team_choice in ['A', 'B', 'C']:
-        team_name = TEAMS[ord(team_choice) - ord('A')]
+    team_mapping = {
+        'A': 'Panthers',
+        'B': 'Bandits',
+        'C': 'Warriors'
+    }
+    
+    if team_choice in team_mapping:
+        team_name = team_mapping[team_choice]
         print(f"\n{team_name} Stats:\n")
         players = teams[team_name]
         total_players = len(players)
