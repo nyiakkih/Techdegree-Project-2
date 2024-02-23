@@ -1,6 +1,7 @@
 from constants import TEAMS, PLAYERS
 import copy
 import random
+from statistics import mean 
 
 def clean_data(PLAYERS):
     cleaned = []
@@ -75,8 +76,8 @@ def display_team_stats(teams):
         print(f"Number of experienced players: {num_experienced}")
         print(f"Number of inexperienced players: {num_inexperienced}")
         
-        total_height = sum(player["height"] for player in players)
-        average_height = total_height / total_players if total_players != 0 else 0
+        heights = [player["height"] for player in players]
+        average_height = mean(heights) if heights else 0
         print(f"Average height: {average_height:.2f} inches")
         
         sorted_players = sorted(players, key=lambda x: x["height"], reverse=True)
